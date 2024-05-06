@@ -2,29 +2,35 @@ import { gql } from '@apollo/client';
 
 export const GET_CHARACTERS = gql`
   query {
-    characters {
-      results {
+  characters {
+    results {
+      name
+      id
+      image
+      status
+      created
+      origin {
         name
+      }
+      gender
+      species
+      episode {
         id
-        image
-        status
+        name
+        air_date
+        episode
         created
-        origin {
+        characters {
           name
-          type
-        }
-        gender
-        species
-        episode {
-          name
-          air_date
+          image
           id
         }
-        location {
-          name
-          dimension
-        }
+      }
+      location {
+        name
+        dimension
       }
     }
   }
+}
 `;

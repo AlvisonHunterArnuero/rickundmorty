@@ -1,35 +1,31 @@
 import { Meta, StoryObj } from '@storybook/react';
-import Characters from './Characters';
+import CharactersTable from '../components/CharactersTable';
 
-const meta = {
-    title: 'Example/Characters',
-    component: Characters,
+const meta: Meta<typeof CharactersTable> = {
+    title: 'HomePage/Characters',
+    component: CharactersTable,
     tags: ['autodocs'],
     parameters: {
         layout: 'centered',
     },
-    args: {
-        image: "string",
-        id: "string",
-        name: "string",
-        gender: "string",
-        species: "string",
-        status: "string",
-        created: "string",
-    },
-} satisfies Meta<typeof Characters>;
+};
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type CharactersTableStory = StoryObj<typeof CharactersTable>;
 
-export const CharactersStory: Story = {
+
+export const DefaultView: CharactersTableStory = {
     args: {
-        image: "string",
-        id: "string",
-        name: "string",
-        gender: "string",
-        species: "string",
-        status: "string",
-        created: "string",
+        characters: [
+            {
+                id: '1',
+                image: '',
+                name: 'Rick Martin',
+                gender: 'Male',
+                species: 'Human',
+                status: "Alive",
+                created: ""
+            },
+        ],
     },
 };

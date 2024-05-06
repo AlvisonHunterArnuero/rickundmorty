@@ -1,15 +1,12 @@
-import { useQuery } from '@apollo/client';
 import { useEffect, useState } from 'react';
-import { GET_CHARACTERS } from '../gqlQueries';
-import CharactersGrid from './CharactersGrid';
+import useCharacters from '../hooks/useCharacters';
+import Spinner from './Spinner';
+import CharactersTable from './CharactersTable';
 
 const CharactersWrapper: React.FC = () => {
     const [characters, setCharacters] = useState([]);
 
-    const { loading, error, data } = useQuery(GET_CHARACTERS, {
-        fetchPolicy: 'cache-and-network',
-        nextFetchPolicy: 'cache-only',
-    });
+    const { error, loading, data } = useCharacters();
 
     useEffect(() => {
         if (data) {
@@ -19,12 +16,17 @@ const CharactersWrapper: React.FC = () => {
         }
     }, [data]);
 
-    if (error) return <p className="text-red-500 text-2xl text- w-full antialiased">Error : {error.message}</p>;
+    if (error)
+        return (
+            <p className="w-full text-2xl antialiased text-red-500 text-">
+                Error : {error.message}
+            </p>
+        );
 
     return loading ? (
-        <p className="text-yellow-300 text-2xl text- w-full antialiased">Loading...</p>
+        <Spinner />
     ) : (
-        <CharactersGrid characters={characters} />
+        <CharactersTable characters={characters} />
     );
 };
 
