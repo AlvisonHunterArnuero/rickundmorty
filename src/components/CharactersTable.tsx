@@ -4,7 +4,6 @@ import { CharactersGridProps } from '../Types';
 import { getStatusColor } from '../utils';
 
 const CharactersTable: React.FC<CharactersGridProps> = ({ characters }) => {
-
     return !characters ? (
         <Spinner />
     ) : (

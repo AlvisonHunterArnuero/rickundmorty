@@ -11,6 +11,7 @@ export const GET_CHARACTERS = gql`
       created
       origin {
         name
+        dimension
       }
       gender
       species
